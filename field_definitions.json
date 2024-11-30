@@ -1,0 +1,118 @@
+{
+  "personal_info": {
+    "type": "section",
+    "label": "ব্যক্তিগত তথ্য",
+    "layout": "multi-column",
+    "columns": 2,
+    "fields": {
+      "নাম": {
+        "type": "text",
+        "label": "নাম",
+        "input_style": "single-line",
+        "char_count": 30
+      },
+      "জন্ম_তারিখ": {
+        "type": "date",
+        "label": "জন্ম তারিখ",
+        "input_style": "single-line",
+        "char_count": 10
+      },
+      "লিঙ্গ": {
+        "type": "select",
+        "label": "লিঙ্গ",
+        "options": ["পুরুষ", "মহিলা", "অন্যান্য"],
+        "input_style": "radio"
+      },
+      "বৈবাহিক_অবস্থা": {
+        "type": "select",
+        "label": "বৈবাহিক অবস্থা",
+        "options": ["অবিবাহিত", "বিবাহিত", "বিধবা/বিপত্নীক", "বিচ্ছিন্ন"],
+        "input_style": "dropdown"
+      }
+    }
+  },
+  "contact_info": {
+    "type": "section",
+    "label": "যোগাযোগের তথ্য",
+    "layout": "single-column",
+    "fields": {
+      "ঠিকানা": {
+        "type": "text",
+        "label": "বর্তমান ঠিকানা",
+        "input_style": "multi-line",
+        "rows": 3,
+        "cols": 40
+      },
+      "ফোন_নম্বর": {
+        "type": "text",
+        "label": "ফোন নম্বর",
+        "input_style": "boxed-chars",
+        "char_count": 11
+      },
+      "ইমেইল": {
+        "type": "text",
+        "label": "ইমেইল",
+        "input_style": "dotted-line",
+        "char_count": 30
+      }
+    }
+  },
+  "education_employment": {
+    "type": "section",
+    "label": "শিক্ষা ও কর্মসংস্থান",
+    "layout": "multi-column",
+    "columns": 2,
+    "fields": {
+      "শিক্ষাগত_যোগ্যতা": {
+        "type": "select",
+        "label": "সর্বোচ্চ শিক্ষাগত যোগ্যতা",
+        "options": ["প্রাথমিক", "মাধ্যমিক", "উচ্চ মাধ্যমিক", "স্নাতক", "স্নাতকোত্তর", "পিএইচডি"],
+        "input_style": "dropdown"
+      },
+      "প্রতিষ্ঠানের_নাম": {
+        "type": "text",
+        "label": "শিক্ষা প্রতিষ্ঠানের নাম",
+        "input_style": "single-line",
+        "char_count": 40
+      },
+      "পেশা": {
+        "type": "select",
+        "label": "পেশা",
+        "options": ["ছাত্র", "চাকরিজীবী", "ব্যবসায়ী", "শিক্ষক", "চিকিৎসক", "গৃহিণী", "অবসরপ্রাপ্ত", "বেকার", "অন্যান্য"],
+        "input_style": "dropdown"
+      },
+      "প্রতিষ্ঠানের_নাম_কর্মক্ষেত্র": {
+        "type": "text",
+        "label": "প্রতিষ্ঠানের নাম (কর্মক্ষেত্র)",
+        "input_style": "single-line",
+        "char_count": 40
+      }
+    }
+  },
+  "additional_info": {
+    "type": "section",
+    "label": "অতিরিক্ত তথ্য",
+    "layout": "single-column",
+    "fields": {
+      "জাতীয়_পরিচয়পত্র_নম্বর": {
+        "type": "text",
+        "label": "জাতীয় পরিচয়পত্র নম্বর",
+        "input_style": "boxed-chars",
+        "char_count": 17
+      },
+      "রক্তের_গ্রুপ": {
+        "type": "select",
+        "label": "রক্তের গ্রুপ",
+        "options": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+        "input_style": "dropdown"
+      },
+      "অতিরিক্ত_তথ্য": {
+        "type": "text",
+        "label": "অতিরিক্ত তথ্য (যদি থাকে)",
+        "input_style": "multi-line",
+        "rows": 4,
+        "cols": 40
+      }
+    }
+  }
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলা ফর্ম জেনারেটর</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: 'Manha Jhankaar';
+            src: url('fonts/Manha Jhankaar (Design)  Unicode Italic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        body, input, button, select, .form-row label {
+            font-family: 'Manha Jhankaar', 'Noto Sans Bengali', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #generatedForm {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+
+        .form-row label {
+            display: inline-block;
+            width: 150px;
+            min-height: 24px;
+            border: 1px dashed #ccc;
+            padding: 2px;
+        }
+
+        .form-field {
+            margin-bottom: 10px;
+        }
+
+        .multi-column {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .multi-column .form-field {
+            width: 48%;
+        }
+
+        #formOptions, #rowOptions {
+            margin-bottom: 20px;
+        }
+
+        #formOptions div, #rowOptions div {
+            margin-bottom: 10px;
+        }
+
+        .dotted-line {
+            border: none;
+            border-bottom: 1px dotted #000;
+            outline: none;
+            width: 200px;
+        }
+
+        .boxed-chars-container {
+            display: flex;
+            gap: 2px;
+        }
+
+        .boxed-chars-input {
+            width: 20px;
+            height: 25px;
+            border: 1px solid #000;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .single-box {
+            width: 200px;
+            border: 1px solid #000;
+            outline: none;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>বাংলা ফর্ম জেনারেটর</h1>
+    <div id="formOptions">
+        <div>
+            <label for="numFields">ফিল্ডের সংখ্যা:</label>
+            <input type="number" id="numFields" min="1" max="20" value="5">
+        </div>
+        <button onclick="generateOptions()">অপশন তৈরি করুন</button>
+    </div>
+    <div id="rowOptions"></div>
+    <button onclick="generateForm()">ফর্ম তৈরি করুন</button>
+    <button onclick="saveAsImage()">ছবি হিসাবে সংরক্ষণ করুন</button>
+    <div id="generatedForm"></div>
+
+    <script>
+        const banglaWords = [
+            'নাম', 'ঠিকানা', 'ফোন', 'ইমেইল', 'জন্ম তারিখ',
+            'পেশা', 'শিক্ষা', 'আয়', 'লিঙ্গ', 'বৈবাহিক অবস্থা',
+            'জাতীয়তা', 'ধর্ম', 'রক্তের গ্রুপ', 'ওজন', 'উচ্চতা'
+        ];
+
+        function generateOptions() {
+            const numFields = document.getElementById('numFields').value;
+            let optionsContent = '';
+
+            for (let i = 0; i < numFields; i++) {
+                optionsContent += `
+                    <div>
+                        <label for="isMultiColumn${i}">সারি ${i + 1} মাল্টি-কলাম:</label>
+                        <input type="checkbox" id="isMultiColumn${i}">
+                        <label for="inputStyle${i}">ইনপুট স্টাইল:</label>
+                        <select id="inputStyle${i}">
+                            <option value="dotted-line">ডটেড লাইন</option>
+                            <option value="boxed-chars">বক্সড অক্ষর</option>
+                            <option value="single-box">একক বক্স</option>
+                        </select>
+                        <label for="charCount${i}">অক্ষর সংখ্যা:</label>
+                        <input type="number" id="charCount${i}" min="1" max="20" value="10">
+                    </div>`;
+            }
+
+            document.getElementById('rowOptions').innerHTML = optionsContent;
+        }
+
+        function generateForm() {
+            const numFields = document.getElementById('numFields').value;
+            let formContent = `<h2>তথ্য ফর্ম</h2>`;
+            formContent += `<form>`;
+
+            for (let i = 0; i < numFields; i++) {
+                const isMultiColumn = document.getElementById(`isMultiColumn${i}`).checked;
+                const inputStyle = document.getElementById(`inputStyle${i}`).value;
+                const charCount = document.getElementById(`charCount${i}`).value;
+                const rowClass = isMultiColumn ? 'multi-column' : '';
+                formContent += `<div class="form-row ${rowClass}">`;
+
+                for (let j = 0; j < (isMultiColumn ? 2 : 1); j++) {
+                    const fieldIndex = i * 2 + j;
+                    const fieldName = `field${fieldIndex}`;
+                    const labelText = banglaWords[fieldIndex] || `ক্ষেত্র ${fieldIndex + 1}`;
+                    formContent += `
+                        <div class="form-field">
+                            <label for="${fieldName}" contenteditable="true">${labelText}:</label>
+                            ${generateInputField(fieldName, inputStyle, charCount)}
+                        </div>`;
+                }
+
+                formContent += `</div>`;
+            }
+
+            formContent += '</form>';
+            document.getElementById('generatedForm').innerHTML = formContent;
+        }
+
+        function generateInputField(fieldName, inputStyle, charCount) {
+            switch (inputStyle) {
+                case 'dotted-line':
+                    return `<input type="text" id="${fieldName}" name="${fieldName}" class="dotted-line">`;
+                case 'boxed-chars':
+                    let boxedChars = `<div class="boxed-chars-container">`;
+                    for (let i = 0; i < charCount; i++) {
+                        boxedChars += `<input type="text" class="boxed-chars-input" maxlength="1">`;
+                    }
+                    boxedChars += '</div>';
+                    return boxedChars;
+                case 'single-box':
+                    return `<input type="text" id="${fieldName}" name="${fieldName}" class="single-box">`;
+                default:
+                    return `<input type="text" id="${fieldName}" name="${fieldName}">`;
+            }
+        }
+
+        function saveAsImage() {
+            html2canvas(document.getElementById('generatedForm')).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'generated_bangla_form.jpg';
+                link.href = canvas.toDataURL('image/jpeg');
+                link.click();
+            });
+        }
+
+        // Initialize options
+        generateOptions();
+    </script>
+</body>
+</html>

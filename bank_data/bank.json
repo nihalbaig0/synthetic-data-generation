@@ -1,0 +1,58 @@
+{
+  "permanent_address": {
+    "address1": "১২৩, গ্রীন রোড",
+    "address2": "ধানমন্ডি",
+    "upazila_thana": "ধানমন্ডি",
+    "city_district": "ঢাকা",
+    "nearest_landmark": "আবাহনী মাঠ",
+    "post_code": "১২০৯",
+    "division": "ঢাকা",
+    "country": "বাংলাদেশ",
+    "phone": "০২-৯৮৭৬৫৪৩"
+  },
+  "work_address": {
+    "address1": "৪৫, মতিঝিল বাণিজ্যিক এলাকা",
+    "address2": "মতিঝিল",
+    "upazila_thana": "মতিঝিল",
+    "city_district": "ঢাকা",
+    "nearest_landmark": "বাংলাদেশ ব্যাংক",
+    "post_code": "১০০০",
+    "division": "ঢাকা",
+    "country": "বাংলাদেশ",
+    "mobile": "০১৭১২৩৪৫৬৭৮",
+    "phone": "০২-৯৫৫৪৪৩৩"
+  },
+  "educational_qualification": {
+    "degree": ["graduate", "post_graduate"],
+    "last_institution": "ঢাকা বিশ্ববিদ্যালয়"
+  },
+  "profession_details": {
+    "category": ["private_service", "multinational"],
+    "organization_name": "এবিসি কর্পোরেশন লিমিটেড",
+    "department": "মার্কেটিং",
+    "designation": "সিনিয়র ম্যানেজার",
+    "employed_since": "২০১৫-০৩-০১",
+    "previous_employment": {
+      "employer": "এক্সওয়াইজেড কোম্পানি",
+      "designation": "ম্যানেজার",
+      "service_length": "৫ বছর"
+    },
+    "total_service_length": "১০ বছর",
+    "primary_contact": "work_address"
+  },
+  "monthly_income": {
+    "salaried": {
+      "gross_salary": "১৫০,০০০",
+      "total_deductions": "২০,০০০",
+      "net_salary": "১৩০,০০০"
+    },
+    "self_employed": {
+      "gross_income": "",
+      "expense": "",
+      "net_income": ""
+    },
+    "additional_income": "স্টক মার্কেট থেকে মাসিক গড় আয়",
+    "spouse_income": "৫০,০০০",
+    "other_income": "২০,০০০"
+  }
+}

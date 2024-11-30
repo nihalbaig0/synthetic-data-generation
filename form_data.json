@@ -1,0 +1,65 @@
+{
+  "numFields": 10,
+  "fields": [
+    {
+      "isMultiColumn": true,
+      "inputStyle": "dotted-line",
+      "charCount": 15,
+      "values": ["রহমান", "ঢাকা, বাংলাদেশ"]
+    },
+    {
+      "isMultiColumn": false,
+      "inputStyle": "boxed-chars",
+      "charCount": 10,
+      "values": ["০১৭১২৩৪৫৬৭৮"]
+    },
+    {
+      "isMultiColumn": true,
+      "inputStyle": "single-box",
+      "charCount": 5,
+      "values": ["২৯", "এপ্রিল"]
+    },
+    {
+      "isMultiColumn": false,
+      "inputStyle": "dotted-line",
+      "charCount": 20,
+      "values": ["ইমেইল@example.com"]
+    },
+    {
+      "isMultiColumn": true,
+      "inputStyle": "boxed-chars",
+      "charCount": 12,
+      "values": ["পুরুষ", "বিবাহিত"]
+    },
+    {
+      "isMultiColumn": false,
+      "inputStyle": "single-box",
+      "charCount": 10,
+      "values": ["বাংলাদেশী"]
+    },
+    {
+      "isMultiColumn": true,
+      "inputStyle": "dotted-line",
+      "charCount": 8,
+      "values": ["ও+", "৬০ কেজি"]
+    },
+    {
+      "isMultiColumn": false,
+      "inputStyle": "boxed-chars",
+      "charCount": 16,
+      "values": ["ঢাকা বিশ্ববিদ্যালয়"]
+    },
+    {
+      "isMultiColumn": true,
+      "inputStyle": "single-box",
+      "charCount": 6,
+      "values": ["৫ ফুট", "৮ ইঞ্চি"]
+    },
+    {
+      "isMultiColumn": false,
+      "inputStyle": "dotted-line",
+      "charCount": 18,
+      "values": ["জন্ম নিবন্ধন নং: ১২৩৪৫৬৭৮৯০"]
+    }
+  ]
+}

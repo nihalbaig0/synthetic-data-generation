@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জেনারেট করা ফর্ম</title>
+    <style>
+        body {
+            font-family: 'Noto Sans Bengali', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        @media print {
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+        }
+        h1, h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-container {
+            border: 1px solid #ddd;
+            padding: 10mm;
+        }
+        .section {
+            margin-bottom: 10mm;
+        }
+        .multi-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5mm;
+        }
+        .column {
+            flex: 1;
+            min-width: 45%;
+        }
+        .form-row {
+            margin-bottom: 5mm;
+        }
+        .form-row label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 2mm;
+        }
+        .form-field {
+            width: 100%;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 2mm;
+            border: 1px solid #ddd;
+            border-radius: 2mm;
+            font-size: 12pt;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .boxed-chars-container {
+            display: flex;
+            gap: 1mm;
+        }
+        .boxed-chars-input {
+            width: 7mm;
+            height: 7mm;
+            border: 1px solid #000;
+            text-align: center;
+            font-size: 12pt;
+        }
+        .dotted-line {
+            border: none;
+            border-bottom: 1px dotted #000;
+            outline: none;
+        }
+        .radio-group {
+            display: flex;
+            gap: 5mm;
+        }
+        .radio-group label {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    {% for record in data %}
+        <div class="page">
+            <h1>জেনারেট করা ফর্ম</h1>
+            <div class="form-container">
+                <form>
+                    {% for section, section_data in fields.items() %}
+                        <div class="section">
+                            <h2>{{ section_data.label }}</h2>
+                            {% if section_data.layout == 'multi-column' %}
+                                <div class="multi-column">
+                                    {% for i in range(section_data.columns) %}
+                                        <div class="column">
+                                            {% for field, properties in section_data.fields.items() %}
+                                                {% if loop.index0 % section_data.columns == i %}
+                                                    <div class="form-row">
+                                                        <label for="{{ field }}">{{ properties.label }}:</label>
+                                                        <div class="form-field">
+                                                            {{ generate_input_html(field, properties, record[section][field]) | safe }}
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {% for field, properties in section_data.fields.items() %}
+                                    <div class="form-row">
+                                        <label for="{{ field }}">{{ properties.label }}:</label>
+                                        <div class="form-field">
+                                            {{ generate_input_html(field, properties, record[section][field]) | safe }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
